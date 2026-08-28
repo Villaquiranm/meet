@@ -230,6 +230,7 @@ class Base(Configuration):
             ("fr-fr", _("French")),
             ("nl-nl", _("Dutch")),
             ("de-de", _("German")),
+            ("es-es", _("Spanish")),
         )
     )
 
@@ -729,20 +730,6 @@ class Base(Configuration):
         environ_name="RECORDING_WORKER_CLASSES",
         environ_prefix=None,
     )
-    RECORDING_EVENT_PARSER_CLASS = values.Value(
-        "core.recording.event.parsers.MinioParser",
-        environ_name="RECORDING_EVENT_PARSER_CLASS",
-        environ_prefix=None,
-    )
-    RECORDING_ENABLE_STORAGE_EVENT_AUTH = values.BooleanValue(
-        True, environ_name="RECORDING_ENABLE_STORAGE_EVENT_AUTH", environ_prefix=None
-    )
-    RECORDING_STORAGE_EVENT_ENABLE = values.BooleanValue(
-        False, environ_name="RECORDING_STORAGE_EVENT_ENABLE", environ_prefix=None
-    )
-    RECORDING_STORAGE_EVENT_TOKEN = SecretFileValue(
-        None, environ_name="RECORDING_STORAGE_EVENT_TOKEN", environ_prefix=None
-    )
     # Number of days before recordings expire - must be synced with bucket lifecycle policy
     # Set to None for no expiration
     RECORDING_EXPIRATION_DAYS = values.IntegerValue(
@@ -856,6 +843,15 @@ class Base(Configuration):
     )
 
     # Lobby configurations
+    PRESENCE_KEY_PREFIX = values.Value(
+        "room_presence", environ_name="PRESENCE_KEY_PREFIX", environ_prefix=None
+    )
+    PRESENCE_CACHE_TIMEOUT = values.PositiveIntegerValue(
+        3600, environ_name="PRESENCE_CACHE_TIMEOUT", environ_prefix=None
+    )
+    PRESENCE_CLEAR_ON_PARTICIPANT_LEFT = values.BooleanValue(
+        True, environ_name="PRESENCE_CLEAR_ON_PARTICIPANT_LEFT", environ_prefix=None
+    )
     LOBBY_KEY_PREFIX = values.Value(
         "room_lobby", environ_name="LOBBY_KEY_PREFIX", environ_prefix=None
     )

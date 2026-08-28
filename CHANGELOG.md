@@ -8,6 +8,22 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- ✨(agent) support Voxtral realtime as inference engine
+- 🌐(i18n) add Spanish language support
+
+### Changed
+
+- 🔥(backend) remove the S3 storage-event webhook for recordings
+- ♻️(backend) always finalize recordings using the LiveKit egress_ended webhook
+
+## [1.29.0] - 2026-08-25
+
+### Added
+
+- ✨(any) let any authenticated user manage the lobby on trusted rooms
+
 ### Changed
 
 - 📱(frontend) collapse mobile control bar items on narrow viewports
@@ -18,6 +34,9 @@ and this project adheres to
 - ⬆️(frontend) upgrade @tanstack/react-query from 5.101.1 to 5.101.4
 - ⬆️(frontend) upgrade @pandacss/preset-panda from 1.11.3 to 1.12.0
 - ⬆️(frontend) upgrade posthog-js from 1.404.1 to 1.409.5
+- ⚡️(frontend) apply frugal constraint to the active meeting audio track
+- ⚡️(backend) replace blocking Redis KEYS with cursor-based SCAN
+- ✨(summary) add hostname to analytics properties
 
 ## [1.28.0] - 2026-08-24
 

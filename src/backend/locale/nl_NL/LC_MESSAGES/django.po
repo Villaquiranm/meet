@@ -672,3 +672,7 @@ msgstr "Nederlands"
 #: meet/settings.py:231
 msgid "German"
 msgstr "Duits"
+
+#: meet/settings.py:233
+msgid "Spanish"
+msgstr "Spaans"
