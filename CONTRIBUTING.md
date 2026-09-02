@@ -39,16 +39,23 @@ Implemented login and signup features, and integrated OAuth2 for social login.
 
 ## Changelog Update
 
-Please add a line to the changelog describing your development. The changelog entry should include a brief summary of the changes, this helps in tracking changes effectively and keeping everyone informed. We usually include the title of the pull request, followed by the pull request ID to finish the log entry. The changelog line should be less than 80 characters in total.
+Please describe your development in the changelog. This helps in tracking changes effectively and keeping everyone informed. We usually include the title of the pull request, followed by the pull request ID to finish the log entry. The changelog line should be less than 80 characters in total.
 
-### Example Changelog Message
+Rather than editing `CHANGELOG.md` directly, add a **new file** under
+`changelog.d/<type>/`, where `<type>` is one of `added`, `changed`,
+`deprecated`, `removed`, `fixed` or `security`. Because every pull request
+writes its own file, changelog entries never conflict between branches. The
+files are folded into `CHANGELOG.md` at release time.
+
+### Example Changelog Entry
+
+In `changelog.d/added/321-add-ai.md`:
+
 ```
-## [Unreleased]
-
-## Added
-
 - ✨(frontend) add AI to the project #321
 ```
+
+See [changelog.d/README.md](changelog.d/README.md) for details.
 
 ## Pull Requests
 
@@ -58,7 +65,7 @@ It is nice to add information about the purpose of the pull request to help revi
 - check your commits
 - check the linting: `make lint && make frontend-lint`
 - check the tests: `make test`
-- add a changelog entry
+- add a changelog entry in `changelog.d/`
 
 Once all the required tests have passed, you can request a review from the project maintainers.
 

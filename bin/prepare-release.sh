@@ -136,22 +136,10 @@ fi
 # Get current date in YYYY-MM-DD format
 CURRENT_DATE=$(date +%Y-%m-%d)
 
-# Replace [Unreleased] with [version number] - YYYY-MM-DD
-if grep -q '\[Unreleased\]' CHANGELOG.md; then
-    sed -i.bak "s/\[Unreleased\]/[$VERSION] - $CURRENT_DATE/" CHANGELOG.md
-
-    # Add new [Unreleased] section after the header
-    # This adds it after the line containing "Semantic Versioning"
-    sed -i.bak "/Semantic Versioning/a\\
-\\
-## [Unreleased]
-" CHANGELOG.md
-
-    rm CHANGELOG.md.bak
-    print_info "Updated CHANGELOG.md"
-else
-    print_warning "Could not find [Unreleased] section in CHANGELOG.md"
-fi
+# Fold the changelog.d fragments into a new version section and open a fresh
+# [Unreleased] section. Aborts the release if a fragment is malformed.
+bin/assemble-changelog.py "$VERSION" "$CURRENT_DATE"
+print_info "Updated CHANGELOG.md"
 
 
 
@@ -172,7 +160,7 @@ echo "      - src/summary/pyproject.toml"
 echo "      - src/summary/uv.lock"
 echo "      - src/agents/pyproject.toml"
 echo "      - src/agents/uv.lock"
-echo "      - CHANGELOG.md"
+echo "      - CHANGELOG.md (assembled from changelog.d/)"
 echo ""
 print_warning "Next steps:"
 echo "  1. Review the changes: git status"
